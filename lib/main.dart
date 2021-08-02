@@ -10,12 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
     ]);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Login",
+      title: "Main Screen",
       theme: ThemeData(primaryColor: Colors.orange[200]),
       routes: <String, WidgetBuilder>{
         SPLASH_SCREEN: (BuildContext context) =>  SplashScreen(),

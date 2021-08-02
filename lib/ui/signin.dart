@@ -3,9 +3,9 @@ import 'package:dexito_play/constants/constants.dart';
 import 'package:dexito_play/ui/widgets/custom_shape.dart';
 import 'package:dexito_play/ui/widgets/responsive_ui.dart';
 import 'package:dexito_play/ui/widgets/textformfield.dart';
-import 'package:dexito_play/ui/dashboard.dart';
-
+import 'package:dexito_play/ui/manual_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:dexito_play/ui/game_page.dart';
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,8 +31,6 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey();
 
-
-
   @override
   Widget build(BuildContext context) {
      _height = MediaQuery.of(context).size.height;
@@ -41,7 +39,9 @@ class _SignInScreenState extends State<SignInScreen> {
      _large =  ResponsiveWidget.isScreenLarge(_width, _pixelRatio);
      _medium =  ResponsiveWidget.isScreenMedium(_width, _pixelRatio);
     return Material(
+
       child: Container(
+        color: Color.fromARGB(255, 187,48,23,),
         height: _height,
         width: _width,
         padding: EdgeInsets.only(bottom: 5),
@@ -49,15 +49,35 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             children: <Widget>[
               clipShape(),
-              welcomeTextRow(),
-              signInTextRow(),
-              form(),
-              forgetPassTextRow(),
-              SizedBox(height: _height / 20),
-              button(),
-              signUpTextRow(),
-              googleLoginRow(),
-              facebookLoginRow(),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: _large? _width/4 : (_medium? _width/4: _width/4),
+                    child: Image.asset(
+                      'assets/images/cup_1.png',
+                      height: _height/5,
+                      width: _width/10,
+                    ),
+                  ),
+                  Column(
+                    children: <Widget>[
+                      SizedBox(height: _height / 20),
+                      button_start_game(),
+                      SizedBox(height: _height / 20),
+                      button_manual(),
+                    ],
+                  ),
+                  Container(
+                    width: _large? _width/4 : (_medium? _width/4: _width/4),
+                    child: Image.asset(
+                      'assets/images/cup_2.png',
+                      height: _height/5,
+                      width: _width/10,
+                    ),
+                  ),
+                ],
+              ),
+
             ],
           ),
         ),
@@ -101,127 +121,23 @@ class _SignInScreenState extends State<SignInScreen> {
           alignment: Alignment.bottomCenter,
           margin: EdgeInsets.only(top: _large? _height/30 : (_medium? _height/25 : _height/20)),
           child: Image.asset(
-            'assets/images/login.png',
-            height: _height/5,
-            width: _width/5,
+            'assets/images/logo.png',
+            height: _height/2.5,
+            width: _width/2.5,
           ),
         ),
       ],
     );
   }
 
-  Widget welcomeTextRow() {
-    return Container(
-      margin: EdgeInsets.only(left: _width / 20, top: _height / 100),
-      child: Row(
-        children: <Widget>[
-          Text(
-            "Welcome",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: _large? 40 : (_medium? 30 : 20),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget signInTextRow() {
-    return Container(
-      margin: EdgeInsets.only(left: _width / 15.0),
-      child: Row(
-        children: <Widget>[
-          Text(
-            "Sign in to your account",
-            style: TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: _large? 15 : (_medium? 12.5 : 10),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget form() {
-    return Container(
-      margin: EdgeInsets.only(
-          left: _width / 12.0,
-          right: _width / 12.0,
-          top: _height / 30.0),
-      child: Form(
-        key: _key,
-        child: Column(
-          children: <Widget>[
-            emailTextFormField(),
-            SizedBox(height: _height / 40.0),
-            passwordTextFormField(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget emailTextFormField() {
-    return CustomTextField(
-      keyboardType: TextInputType.emailAddress,
-      textEditingController: emailController,
-      icon: Icons.email,
-      hint: "Email ID",
-    );
-
-  }
-
-  Widget passwordTextFormField() {
-    return CustomTextField(
-      keyboardType: TextInputType.emailAddress,
-      textEditingController: passwordController,
-      icon: Icons.lock,
-      obscureText: true,
-      hint: "Password",
-    );
-  }
-
-  Widget forgetPassTextRow() {
-    return Container(
-      margin: EdgeInsets.only(top: _height / 40.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            "Forgot your password?",
-            style: TextStyle(fontWeight: FontWeight.normal,fontSize: _large? 14: (_medium? 12: 10)),
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          GestureDetector(
-            onTap: () {
-              print("Routing");
-            },
-            child: Text(
-              "Recover",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.orange[200]),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget button() {
+  Widget button_start_game() {
     return RaisedButton(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
       onPressed: () {
-          print("Routing to your account");
+
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (ctx) => DashboardScreen()));
-          Scaffold
-              .of(context)
-              .showSnackBar(SnackBar(content: Text('Login Successful')));
+              builder: (ctx) => GamePage()));
 
       },
       textColor: Colors.white,
@@ -236,118 +152,34 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
         padding: const EdgeInsets.all(12.0),
-        child: Text('LOGIN',style: TextStyle(fontSize: _large? 14: (_medium? 12: 10))),
+        child: Text('Start Game',style: TextStyle(fontSize: _large? 17: (_medium? 15: 13))),
       ),
     );
   }
+  Widget button_manual() {
+    return RaisedButton(
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      onPressed: () {
 
-  Widget signUpTextRow() {
-    return Container(
-      margin: EdgeInsets.only(top: _height / 120.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            "New Here?",
-            style: TextStyle(fontWeight: FontWeight.normal,fontSize: _large? 14: (_medium? 12: 10)),
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed(SIGN_UP);
-              print("Routing to Sign up screen");
-            },
-            child: Text(
-              "Create Account",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.orange[200], fontSize: _large? 19: (_medium? 17: 15)),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-  Widget googleLoginRow(){
-    return InkWell(
-            child: Container(
-                width: _large? _width/2 : (_medium? _width/2: _width/2),
-                height: _large? _height/18 : (_medium? _height/18: _height/18),
-                margin: EdgeInsets.only(top: 25),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color:Colors.white
-                ),
-                child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Container(
-                          height: 30.0,
-                          width: 30.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                        OutlinedButton.icon(
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (ctx) => ManualPage()));
 
-                          icon: Icon(
-                            FontAwesomeIcons.googlePlusG,
-                            size: 25.0,
-                          ),
-                          label: Text("Google"),
-                          onPressed: () {},
-                        ),
-
-                      ],
-                    )
-                )
-            ),
-            onTap: ()
-            {
-            },
-    );
-  }
-  Widget facebookLoginRow(){
-    return InkWell(
-      child: Container(
-          width: _large? _width/2 : (_medium? _width/2: _width/2),
-          height: _large? _height/18 : (_medium? _height/18: _height/18),
-          margin: EdgeInsets.only(top: 25),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color:Colors.white
-          ),
-          child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    height: 30.0,
-                    width: 30.0,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image:
-                          AssetImage('assets/images/fblogo.jpg'),
-                          fit: BoxFit.cover),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  Text('Sign in with Facebook',
-                    style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black
-                    ),
-                  ),
-                ],
-              )
-          )
-      ),
-      onTap: ()
-      {
       },
+      textColor: Colors.white,
+      padding: EdgeInsets.all(0.0),
+      child: Container(
+        alignment: Alignment.center,
+        width: _large? _width/2 : (_medium? _width/2: _width/2),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          gradient: LinearGradient(
+            colors: <Color>[Colors.orange[200], Colors.pinkAccent],
+          ),
+        ),
+        padding: const EdgeInsets.all(12.0),
+        child: Text('How to Play',style: TextStyle(fontSize: _large? 17: (_medium? 15: 13))),
+      ),
     );
   }
 }
