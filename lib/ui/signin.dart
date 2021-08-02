@@ -6,6 +6,7 @@ import 'package:dexito_play/ui/widgets/textformfield.dart';
 import 'package:dexito_play/ui/manual_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dexito_play/ui/game_page.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,6 +22,17 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    // TODO: Initialize Google Mobile Ads SDK
+    return MobileAds.instance.initialize();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initGoogleMobileAds();
+  }
 
   double _height;
   double _width;

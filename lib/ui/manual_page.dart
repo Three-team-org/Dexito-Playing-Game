@@ -6,6 +6,7 @@ import 'package:dexito_play/ui/widgets/responsive_ui.dart';
 import 'package:dexito_play/ui/widgets/textformfield.dart';
 import 'package:dexito_play/ui/signin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'dart:math';
 class ManualPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -31,46 +32,10 @@ class _ManualScreenState extends State<ManualScreen> {
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> _key = GlobalKey();
 
+
+
   List<String> manual_text = List<String>(4);
 
-  List<String> word_list = [
-    "spoon", "cup", "duck","floor", "quilt", "pen", "necklace", "mop", "chili", "watch", "rock", "whipped-cream", "egg", "rabbit", "wallet", "face",
-    "sandglass", "pepper ", "bracelet", "marble", "lamp", "coffee", "mug", "toy", "boat", "carrots", "CD", "knife", "football", "mousepad", "dagger", "snow", "soldier", "ice-cream", "pin",
-    "clock", "battery", "brush", "screw", "scissors", "hammer", "chalk", "pot", "book", "hamster", "cement", "key", "lion", "candlestick", "chocolate", "bottle", "laser ",
-    "television", "toilet ", "paper", "plate", "baseball", "umbrella", "glass", "toothpick", "hair", "dove", "soda", "car", "honey", "banana", "flashlight", "orange",
-    "needle", "thermometer", "dominos", "shark", "octopus", "tiger", "magazine", "trucks", "twister", "fork", "toothbrush", "pickles", "dinosaur", "remote",
-    "rat", "belt", "chain", "lime", "puzzle", "milk", "note", "bookmark", "dolphin", "bag", "corn", "washcloth", "food", "book", "scarf",
-    "panda", "toothpick", "keychain", "chicken", "light", "pocketknife", "shirt", "monitor", "magnet", "window", "keyboard", "frog", "pasta", "shovel", "tomato",
-    "gun", "catalogue", "glue", "popcorn", "buckle", "ring", "dog", "cat", "rug", "goggles", "socks", "mirror", "letter-opener", "socks", "hat", "tree",
-    "harmonica", "matchbook", "straw", "washing-machine", "perfume", "shampoo", "sunglasses", "bananas", "rope", "matches", "statue", "map", "pony", "paperclip",
-    "extension-cord", "soap", "salt", "shaker", "keys", "slipper", "giraffe", "apple", "outlet", "clothes", "zebra", "necktie", "flowers", "credit-card",
-    "whistle", "couch", "seatbelt", "pencil", "shoelace", "lightbulb", "spring", "pencil", "toilet-paper ", "string", "guitar", "swing", "handcuffs",
-    "hairbrush", "dice", "conditioner", "eyeliner", "glowstick", "syrup", "flag", "joke", "button", "glitter", "ink", "iPod", "cards", "box", "sailboat",
-    "plane", "lighter", "phone", "purse", "money", "screwdriver", "nail", "gloves", "desk", "photo", "balloon", "fridge", "lace", "sponge", "ball", "needle",
-    "lipgloss", "binoculars", "sandals", "deodorant", "cork", "bowl", "sidewalk", "crayons", "eraser", "oil", "gum", "candybar", "stick", "door", "charger", "sword", "icecube", "jam", "white", "lotion", "bow",
-    "earrings", "blouse", "wishbone", "pinecone", "bed", "bread", "tv", "unicorn", "beef", "stamp", "sofa", "pillow", "pocketwatch", "shoes", "squirrel", "zipper",
-    "radio", "whip", "jar", "thread", "pan", "chalk", "tongs", "sheep", "dictionary", "crowbar", "flowers", "basketball", "tissues", "beans", "whale",
-    "bell", "pills", "fan", "wristwatch", "purse", "phone", "comb", "cow", "cookie", "feather", "teddies", "glasses", "towel", "sunscreen", "pants",
-    "rubberbands", "table", "blowdryer", "canteen", "Christmas ", "spectacles", "drawer", "keychain", "videogames", "checkbook", "microphone", "incense",
-    "groceries", "cucumber", "robot", "house", "turtle", "trash", "candle", "magnifying-glass", "brush", "thread", "spatula", "leg", "notebook", "paint",
-    "hanger", "water", "camera", "tennis ", "canvas", "novel", "lotion", "notepad", "shirt", "bandana", "puddle", "butter", "helmet", "toothpaste", "fish", "vase", "wifi",
-    "pool ", "change", "chess", "rhino", "rabbit", "computer", "speakers", "broccoli", "pouch", "lemon", "martini ", "glass", "chair", "pudding", "wine ", "stockings", "Netflix", "GOT", "piano",
-    "astronaut", "computer", "vodka", "coke", "university", "drink", "beer", "ps4", "girl", "boy", "muscle", "gym", "screen", "shot", "tequila", "test",
-    "bowl", "sushi", "doctor", "engineer", "helicopter", "ironman", "avengers", "Eminem", "money", "cloud", "song", "spirit", "ghost ", "macaron", "chicken",
-    "bike", "seat", "mouth", "lips", "nose", "eyes", "green", "chair", "rain", "thunder", "stage", "goal", "Ronaldo", "Messi", "island", "beach", "sea",
-    "sand", "castle", "holiday", "Tom-Hanks", "Angelina-Jolie", "Scarlet-Johansson", "Bill-Gates", "Elon-Musk", "Jeff-Bezos", "Leonardo-DiCaprio", "snake", "spider",
-    "bee", "wasp", "jungle", "monkey", "film", "cinema", "sun", "table", "space", "police", "shower", "smell", "belly", "apartment", "Paris", "London", "Athens",
-    "Tokyo", "Barcelona", "Spain", "Sweden", "Harry-Kane", "storm", "skeleton", "sky", "night", "day", "Obama", "tent", "camping", "fishing", "bird", "flying",
-    "war", "Earth", "Mars", "poker", "casino", "omelet", "run", "church", "gun", "fire", "air", "breath", "kitchen", "bin", "garden", "tree", "snail", "skull",
-    "death", "brain", "suit", "floor", "dancing", "south", "east", "theory", "maths", "physics", "cheese", "Siri", "retirement","health", "field", "pitch",
-    "stranger", "view", "expensive", "old", "funny", "ticket", "unique", "pizza", "pig", "channel", "cave", "wood", "doll", "alive", "belief", "hot",
-    "son", "daughter", "playground", "disease", "virus", "smart", "record", "list", "mystery", "venom", "thumb", "flood", "brick", "pocket", "elbow",
-    "government", "giant", "glacier", "lick", "grape", "father", "quill", "sleep", "hospital", "volcano", "blind", "pet", "eyebrows", "wings", "salsa",
-    "moon", "planet", "asteroid", "cell", "tomato", "owl", "Harry-Potter", "Voldemort", "dragon", "Barney-Stinson", "lawyer", "steak", "boxers",
-    "body", "sheets", "blood", "fridge", "rice", "salmon", "ski", "beam", "tear", "Beyonce ", "luck", "music", "poison", "bell", "alarm", "seal", "cut",
-    "cherry", "locket", "cold", "orange", "knee", "school", "teacher", "snore", "baby", "Instagram", "farm", "horse", "crab", "mail", "mailbox", "pyramids", "skin",
-    "sugar", "circle", "train", "bear", "wave", "squid", "ten", "time", "hour", "minute", "drums", "skateboarding",
-  ];
   @override
   void initState() {
     super.initState();
@@ -84,6 +49,7 @@ class _ManualScreenState extends State<ManualScreen> {
     manual_text[3] = "•  Once the drinks have been consumed, pass the\n" +
                      "    phone to the next person and tap the screen to\n"+
                      "    reveal the next word.";
+
   }
 
   @override
