@@ -66,7 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Container(
                     width: _large? _width/4 : (_medium? _width/4: _width/4),
                     child: Image.asset(
-                      'assets/images/cup_1.png',
+                      'assets/images/cup_left.png',
                       height: _height/5,
                       width: _width/10,
                     ),
@@ -82,7 +82,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   Container(
                     width: _large? _width/4 : (_medium? _width/4: _width/4),
                     child: Image.asset(
-                      'assets/images/cup_2.png',
+                      'assets/images/cup_right.png',
                       height: _height/5,
                       width: _width/10,
                     ),
@@ -160,18 +160,18 @@ class _SignInScreenState extends State<SignInScreen> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
           gradient: LinearGradient(
-            colors: <Color>[Colors.orange[200], Colors.pinkAccent],
+            colors: <Color>[Colors.red[200], Colors.orangeAccent],
           ),
         ),
         padding: const EdgeInsets.all(12.0),
-        child: Text('Start Game',style: TextStyle(fontSize: _large? 17: (_medium? 15: 13))),
+        child: Text('Start Game',style: TextStyle(fontSize: _large? 17: (_medium? 15: 13), fontFamily: "Montserrrat"),),
       ),
     );
   }
   Widget button_manual() {
     return RaisedButton(
       elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40.0)),
       onPressed: () {
 
         Navigator.of(context).push(MaterialPageRoute(
@@ -184,9 +184,9 @@ class _SignInScreenState extends State<SignInScreen> {
         alignment: Alignment.center,
         width: _large? _width/2 : (_medium? _width/2: _width/2),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          borderRadius: BorderRadius.all(Radius.circular(40.0)),
           gradient: LinearGradient(
-            colors: <Color>[Colors.orange[200], Colors.pinkAccent],
+            colors: <Color>[Colors.red[200], Colors.orangeAccent],
           ),
         ),
         padding: const EdgeInsets.all(12.0),

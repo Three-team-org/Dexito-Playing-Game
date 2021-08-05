@@ -84,6 +84,11 @@ class _GameScreenState extends State<GameScreen> {
   // TODO: Add _isInterstitialAdReady
   bool _isInterstitialAdReady = false;
 
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    // TODO: Initialize Google Mobile Ads SDK
+    return MobileAds.instance.initialize();
+  }
+
   // TODO: Implement _loadInterstitialAd()
   void _loadInterstitialAd() {
     InterstitialAd.load(
@@ -98,7 +103,6 @@ class _GameScreenState extends State<GameScreen> {
 
             },
           );
-
           _isInterstitialAdReady = true;
         },
         onAdFailedToLoad: (err) {
@@ -113,6 +117,7 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
+    _initGoogleMobileAds();
     _loadInterstitialAd();
   }
 
@@ -133,13 +138,14 @@ class _GameScreenState extends State<GameScreen> {
 
           int min = 0, max = word_list.length;
           int r = min + rnd.nextInt(max - min);
-          print("$r is in the range of $min and $max"); // e.g. 31
+          // print("$r is in the range of $min and $max"); // e.g. 31
           // used as a function nextInter:
 
           int r2 = min + rnd2.nextInt(max - min);
           setState(() {
             random_text_guess = word_list[r2];
           });
+
           if (_isInterstitialAdReady) {
             _interstitialAd?.show();
           }
@@ -199,7 +205,7 @@ class _GameScreenState extends State<GameScreen> {
                     Container(
                       width: _width/8,
                       child: Image.asset(
-                        'assets/images/cup_1.png',
+                        'assets/images/cup_left.png',
                         height: _height/4,
                         width: _width/8,
                       ),
@@ -212,7 +218,7 @@ class _GameScreenState extends State<GameScreen> {
                     Container(
                       width: _width/8,
                       child: Image.asset(
-                        'assets/images/cup_2.png',
+                        'assets/images/cup_right.png',
                         height: _height/4,
                         width: _width/8,
                       ),
@@ -301,7 +307,7 @@ class _GameScreenState extends State<GameScreen> {
           margin: EdgeInsets.only(top: _large? _height*2/3 : (_medium? _height*2/3 : _height*2/3),
               left:_large? _width/10 : (_medium? _height/10 : _height/10) ),
           child: Image.asset(
-            'assets/images/cup_1.png',
+            'assets/images/cup_left.png',
             height: _height/4,
             width: _width/4,
           ),

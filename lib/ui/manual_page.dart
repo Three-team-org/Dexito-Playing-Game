@@ -106,85 +106,100 @@ class _ManualScreenState extends State<ManualScreen> {
                   Text("  "),
                 ],
               ),
-              SizedBox(height: 20,),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: _width/8,
-                  ),
-                  Container(
-                    width: _width*3/4,
-                    child:  Text(manual_text[0],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
-                  ),
-                  Container(
-                    width: _width/8,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: _width/8,
-                  ),
-                  Container(
-                    width: _width*3/4,
-                    child:  Text(manual_text[1],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
-                  ),
-                  Container(
-                    width: _width/8,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20,),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: _width/8,
-                    child: Image.asset(
-                      'assets/images/cup_1.png',
-                      height: _height/5,
-                      width: _width/10,
+              SizedBox(height: _height/35,),
+              Container(
+                height: MediaQuery.of(context).size.height*3/5,
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                        child: ListView(
+                          scrollDirection: Axis.vertical,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: _width/8,
+                                ),
+                                Container(
+                                  width: _width*3/4,
+                                  child:  Text(manual_text[0],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
+                                ),
+                                Container(
+                                  width: _width/8,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: _height/35,),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: _width/8,
+                                ),
+                                Container(
+                                  width: _width*3/4,
+                                  child:  Text(manual_text[1],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
+                                ),
+                                Container(
+                                  width: _width/8,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: _height/35,),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: _width/8,
+                                  child: Image.asset(
+                                    'assets/images/cup_left.png',
+                                    height: _height/5,
+                                    width: _width/10,
+                                  ),
+                                ),
+                                Container(
+                                  width: _width*3/4,
+                                  child:  Text(manual_text[2],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
+                                ),
+                                Container(
+                                  width: _width/8,
+                                  child: Image.asset(
+                                    'assets/images/cup_right.png',
+                                    height: _height/5,
+                                    width: _width/10,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: _height/35,),
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: _width/8,
+                                ),
+                                Container(
+                                  width: _width*3/4,
+                                  child:  Text(manual_text[3],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
+                                ),
+                                Container(
+                                  width: _width/8,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: _height/35,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child:  Text("Simple right ?",style: TextStyle(fontSize: _large? 30: (_medium? 28: 26), fontWeight: FontWeight.bold)),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                     ),
-                  ),
-                  Container(
-                    width: _width*3/4,
-                    child:  Text(manual_text[2],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
-                  ),
-                  Container(
-                    width: _width/8,
-                    child: Image.asset(
-                      'assets/images/cup_2.png',
-                      height: _height/5,
-                      width: _width/10,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              SizedBox(height: 20,),
-              Row(
-                children: <Widget>[
-                  Container(
-                    width: _width/8,
-                  ),
-                  Container(
-                    width: _width*3/4,
-                    child:  Text(manual_text[3],style: TextStyle(fontSize: _large? 20: (_medium? 18: 16), fontWeight: FontWeight.bold)),
-                  ),
-                  Container(
-                    width: _width/8,
-                  ),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    child:  Text("Simple right ?",style: TextStyle(fontSize: _large? 30: (_medium? 28: 26), fontWeight: FontWeight.bold)),
-                  ),
-                ],
-              ),
+
             ],
           ),
         ),
@@ -245,7 +260,7 @@ class _ManualScreenState extends State<ManualScreen> {
           margin: EdgeInsets.only(top: _large? _height*2/3 : (_medium? _height*2/3 : _height*2/3),
               left:_large? _width/10 : (_medium? _height/10 : _height/10) ),
           child: Image.asset(
-            'assets/images/cup_1.png',
+            'assets/images/cup_left.png',
             height: _height/4,
             width: _width/4,
           ),
